@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.api.tech_challenge_1.dto.PsychologistDTO;
 import br.com.fiap.api.tech_challenge_1.entity.Psychologist;
 import br.com.fiap.api.tech_challenge_1.repository.PsychologistRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class PsychologistService {
@@ -24,6 +25,23 @@ public class PsychologistService {
 		Psychologist psychologist = toPsychologist(pychologistDTO);
 		psychologist = repository.save(psychologist);
 		return toPsychologistDTO(psychologist);
+	}
+	
+	public PsychologistDTO update(UUID id, PsychologistDTO pychologistDTO) {
+		try {
+			Psychologist psychologist = repository.getReferenceById(id);
+			psychologist.setName(pychologistDTO.name());
+			psychologist.setCRM(pychologistDTO.CRM());
+			psychologist.setEmail(pychologistDTO.email());
+			repository.save(psychologist);
+			return toPsychologistDTO(psychologist);
+		} catch (EntityNotFoundException exception) {
+			throw exception;
+		}
+	}
+	
+	public void delete(UUID id) {
+		repository.deleteById(id);
 	}
 
 	private Psychologist toPsychologist(PsychologistDTO dto) {
