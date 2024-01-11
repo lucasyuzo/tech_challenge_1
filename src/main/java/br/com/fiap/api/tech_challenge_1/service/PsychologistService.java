@@ -32,7 +32,7 @@ public class PsychologistService {
 		try {
 			Psychologist psychologist = repository.getReferenceById(id);
 			psychologist.setName(psychologistDTO.name());
-			psychologist.setCRM(psychologistDTO.CRM());
+			psychologist.setCRP(psychologistDTO.CRP());
 			psychologist.setEmail(psychologistDTO.email());
 			repository.save(psychologist);
 			return toPsychologistDTO(psychologist);
@@ -46,11 +46,11 @@ public class PsychologistService {
 	}
 
 	private Psychologist toPsychologist(PsychologistDTO dto) {
-		return new Psychologist(dto.id(), dto.name(), dto.CRM(), dto.email());
+		return new Psychologist(dto.id(), dto.name(), dto.CRP(), dto.email());
 	}
 
 	private PsychologistDTO toPsychologistDTO(Psychologist psychologist) {
 		return new PsychologistDTO(psychologist.getId(), psychologist.getName(),
-				psychologist.getCRM(), psychologist.getEmail());
+				psychologist.getCRP(), psychologist.getEmail());
 	}
 }

@@ -17,16 +17,16 @@ public class Psychologist {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	private String name;
-	private String CRM;
+	private String CRP;
 	private String email;
 
 	public Psychologist() {
 	}
 
-	public Psychologist(UUID id, String name, String CRM, String email) {
+	public Psychologist(UUID id, String name, String CRP, String email) {
 		this.id = id;
 		this.name = name;
-		this.CRM = CRM;
+		this.CRP = CRP;
 		this.email = email;
 	}
 
@@ -46,12 +46,12 @@ public class Psychologist {
 		this.name = name;
 	}
 
-	public String getCRM() {
-		return CRM;
+	public String getCRP() {
+		return CRP;
 	}
 
-	public void setCRM(String CRM) {
-		this.CRM = CRM;
+	public void setCRP(String CRP) {
+		this.CRP = CRP;
 	}
 
 	public String getEmail() {
@@ -81,6 +81,6 @@ public class Psychologist {
 
 	@Override
 	public String toString() {
-		return "Psychologist [name=" + name + ", CRM=" + CRM + "]";
+		return "Psychologist [name=" + name + ", CRP=" + CRP + "]";
 	}
 }

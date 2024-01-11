@@ -8,6 +8,6 @@ import java.util.UUID;
 public record PsychologistDTO(
         UUID id,
         @NotBlank(message = "Invalid name") String name,
-        String CRM,
+        String CRP,
         @Email(message = "Invalid e-mail") String email) {
 }
