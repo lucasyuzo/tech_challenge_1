@@ -2,6 +2,7 @@ package br.com.fiap.api.tech_challenge_1.service;
 
 import java.util.UUID;
 
+import br.com.fiap.api.tech_challenge_1.controller.expection.ControllerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,26 +18,26 @@ public class PsychologistService {
 	private PsychologistRepository repository;
 
 	public PsychologistDTO findById(UUID id) {
-		var psychologist = repository.findById(id).orElseThrow(null);
+		var psychologist = repository.findById(id).orElseThrow(() -> new ControllerNotFoundException("Psychologist not found"));
 		return toPsychologistDTO(psychologist);
 	}
 
-	public PsychologistDTO save(PsychologistDTO pychologistDTO) {
-		Psychologist psychologist = toPsychologist(pychologistDTO);
+	public PsychologistDTO save(PsychologistDTO psychologistDTO) {
+		Psychologist psychologist = toPsychologist(psychologistDTO);
 		psychologist = repository.save(psychologist);
 		return toPsychologistDTO(psychologist);
 	}
 	
-	public PsychologistDTO update(UUID id, PsychologistDTO pychologistDTO) {
+	public PsychologistDTO update(UUID id, PsychologistDTO psychologistDTO) {
 		try {
 			Psychologist psychologist = repository.getReferenceById(id);
-			psychologist.setName(pychologistDTO.name());
-			psychologist.setCRM(pychologistDTO.CRM());
-			psychologist.setEmail(pychologistDTO.email());
+			psychologist.setName(psychologistDTO.name());
+			psychologist.setCRM(psychologistDTO.CRM());
+			psychologist.setEmail(psychologistDTO.email());
 			repository.save(psychologist);
 			return toPsychologistDTO(psychologist);
 		} catch (EntityNotFoundException exception) {
-			throw exception;
+			throw new ControllerNotFoundException("Psychologist not found");
 		}
 	}
 	
