@@ -20,8 +20,7 @@ public class Psychologist {
 	private String CRP;
 	private String email;
 
-	public Psychologist() {
-	}
+	public Psychologist() {}
 
 	public Psychologist(UUID id, String name, String CRP, String email) {
 		this.id = id;
@@ -63,24 +62,23 @@ public class Psychologist {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Psychologist psychologist = (Psychologist) o;
+		return Objects.equals(id, psychologist.id);
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Psychologist other = (Psychologist) obj;
-		return Objects.equals(id, other.id);
-	}
-
-	@Override
 	public String toString() {
-		return "Psychologist [name=" + name + ", CRP=" + CRP + "]";
+		return "Psychologist{" +
+				"name='" + name + '\'' +
+				", CRP='" + CRP + '\'' +
+				'}';
 	}
 }

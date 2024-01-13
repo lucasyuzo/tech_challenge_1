@@ -9,5 +9,5 @@ public record PsychologistDTO(
         UUID id,
         @NotBlank(message = "Invalid name") String name,
         String CRP,
-        @Email(message = "Invalid e-mail") String email) {
-}
+        @Email(message = "Invalid e-mail") String email
+) { }

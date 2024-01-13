@@ -9,6 +9,4 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface PsychologistRepository extends JpaRepository<Psychologist, UUID> {
-
-}
+public interface PsychologistRepository extends JpaRepository<Psychologist, UUID> { }

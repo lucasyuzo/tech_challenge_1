@@ -4,6 +4,9 @@ import java.util.UUID;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,8 +30,14 @@ public class PsychologistController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<PsychologistDTO> findById(@PathVariable(name = "id", required = true) UUID id) {
-		var psychologistDTO = service.findById(id);
+		PsychologistDTO psychologistDTO = service.findById(id);
 		return ResponseEntity.ok(psychologistDTO);
+	}
+
+	@GetMapping
+	public ResponseEntity<Page<PsychologistDTO>> findAll(@PageableDefault(size = 10, page = 0, sort = "name") Pageable pageable) {
+		Page<PsychologistDTO> psychologistDTOS = service.findAll(pageable);
+		return ResponseEntity.ok(psychologistDTOS);
 	}
 
 	@PostMapping
@@ -47,8 +56,8 @@ public class PsychologistController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable(name = "id", required = true) UUID id) {
-		service.delete(id);
+	public ResponseEntity<Void> deleteById(@PathVariable(name = "id", required = true) UUID id) {
+		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 }

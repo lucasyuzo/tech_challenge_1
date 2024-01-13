@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import br.com.fiap.api.tech_challenge_1.controller.expection.ControllerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.api.tech_challenge_1.dto.PsychologistDTO;
@@ -22,6 +24,11 @@ public class PsychologistService {
 		return toPsychologistDTO(psychologist);
 	}
 
+	public Page<PsychologistDTO> findAll(Pageable pageable) {
+		Page<Psychologist> psychologists = repository.findAll(pageable);
+		return psychologists.map(this::toPsychologistDTO);
+	}
+
 	public PsychologistDTO save(PsychologistDTO psychologistDTO) {
 		Psychologist psychologist = toPsychologist(psychologistDTO);
 		psychologist = repository.save(psychologist);
@@ -34,23 +41,32 @@ public class PsychologistService {
 			psychologist.setName(psychologistDTO.name());
 			psychologist.setCRP(psychologistDTO.CRP());
 			psychologist.setEmail(psychologistDTO.email());
-			repository.save(psychologist);
+			psychologist = repository.save(psychologist);
 			return toPsychologistDTO(psychologist);
 		} catch (EntityNotFoundException exception) {
 			throw new ControllerNotFoundException("Psychologist not found");
 		}
 	}
 	
-	public void delete(UUID id) {
+	public void deleteById(UUID id) {
 		repository.deleteById(id);
 	}
 
-	private Psychologist toPsychologist(PsychologistDTO dto) {
-		return new Psychologist(dto.id(), dto.name(), dto.CRP(), dto.email());
+	private Psychologist toPsychologist(PsychologistDTO psychologistDTO) {
+		return new Psychologist(
+				psychologistDTO.id(),
+				psychologistDTO.name(),
+				psychologistDTO.CRP(),
+				psychologistDTO.email()
+		);
 	}
 
 	private PsychologistDTO toPsychologistDTO(Psychologist psychologist) {
-		return new PsychologistDTO(psychologist.getId(), psychologist.getName(),
-				psychologist.getCRP(), psychologist.getEmail());
+		return new PsychologistDTO(
+				psychologist.getId(),
+				psychologist.getName(),
+				psychologist.getCRP(),
+				psychologist.getEmail()
+		);
 	}
 }
