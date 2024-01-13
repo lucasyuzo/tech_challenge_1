@@ -1,5 +1,6 @@
 package br.com.fiap.api.tech_challenge_1.entity;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,14 +20,16 @@ public class Psychologist {
 	private String name;
 	private String CRP;
 	private String email;
+	private List<UUID> patientsId;
 
 	public Psychologist() {}
 
-	public Psychologist(UUID id, String name, String CRP, String email) {
+	public Psychologist(UUID id, String name, String CRP, String email, List<UUID> patientsId) {
 		this.id = id;
 		this.name = name;
 		this.CRP = CRP;
 		this.email = email;
+		this.patientsId = patientsId;
 	}
 
 	public UUID getId() {
@@ -59,6 +62,18 @@ public class Psychologist {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<UUID> getPatientsId() {
+		return this.patientsId;
+	}
+
+	public void addPatient(UUID patient) {
+		this.patientsId.add(patient);
+	}
+
+	public void removePatient(UUID id) {
+		this.patientsId.remove(id);
 	}
 
 	@Override

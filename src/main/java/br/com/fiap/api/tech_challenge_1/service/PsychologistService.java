@@ -57,7 +57,8 @@ public class PsychologistService {
 				psychologistDTO.id(),
 				psychologistDTO.name(),
 				psychologistDTO.CRP(),
-				psychologistDTO.email()
+				psychologistDTO.email(),
+				psychologistDTO.patientsId()
 		);
 	}
 
@@ -66,7 +67,8 @@ public class PsychologistService {
 				psychologist.getId(),
 				psychologist.getName(),
 				psychologist.getCRP(),
-				psychologist.getEmail()
+				psychologist.getEmail(),
+				psychologist.getPatientsId()
 		);
 	}
 }

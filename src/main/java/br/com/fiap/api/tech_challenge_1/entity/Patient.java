@@ -19,10 +19,11 @@ public class Patient {
     private String CPF;
     private String email;
     private String phoneNumber;
+    private UUID psychologistId;
 
     public Patient() {}
 
-    public Patient(UUID id, String name, int age, Gender gender, String CPF, String email, String phoneNumber) {
+    public Patient(UUID id, String name, int age, Gender gender, String CPF, String email, String phoneNumber, UUID psychologistId) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -30,6 +31,7 @@ public class Patient {
         this.CPF = CPF;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.psychologistId = psychologistId;
     }
 
     public UUID getId() {
@@ -86,6 +88,14 @@ public class Patient {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public UUID getPsychologistId() {
+        return this.psychologistId;
+    }
+
+    public void setPsychologistId(UUID id) {
+        this.psychologistId = id;
     }
 
     @Override

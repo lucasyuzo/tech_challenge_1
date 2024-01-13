@@ -14,5 +14,6 @@ public record PatientDTO(
         Gender gender,
         @CPF(message = "Invalid CPF") String CPF,
         @Email(message = "Invalid e-mail") String email,
-        String phoneNumber
+        String phoneNumber,
+        UUID psychologistId
 ) { }
