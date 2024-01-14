@@ -1,8 +1,6 @@
 package br.com.fiap.api.tech_challenge_1.entity;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,23 +19,21 @@ public class Psychologist {
 	private String CRP;
 	private String email;
 	private List<UUID> patientsId;
+	private List<UUID> schedulesId;
 
-	public Psychologist() {}
+	public Psychologist() { }
 
-	public Psychologist(UUID id, String name, String CRP, String email, List<UUID> patientsId) {
+	public Psychologist(UUID id, String name, String CRP, String email, List<UUID> patientsId, List<UUID> schedulesId) {
 		this.id = id;
 		this.name = name;
 		this.CRP = CRP;
 		this.email = email;
 		this.patientsId = patientsId;
+		this.schedulesId = schedulesId;
 	}
 
 	public UUID getId() {
 		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -74,6 +70,18 @@ public class Psychologist {
 
 	public void removePatient(UUID id) {
 		this.patientsId.remove(id);
+	}
+
+	public List<UUID> getSchedulesId() {
+		return this.schedulesId;
+	}
+
+	public void addSchedule(UUID id) {
+		this.schedulesId.add(id);
+	}
+
+	public void removeSchedule(UUID id) {
+		this.schedulesId.remove(id);
 	}
 
 	@Override
