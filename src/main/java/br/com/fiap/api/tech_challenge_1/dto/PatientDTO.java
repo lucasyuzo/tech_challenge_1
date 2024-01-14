@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.List;
 import java.util.UUID;
 
 public record PatientDTO(
@@ -15,5 +16,6 @@ public record PatientDTO(
         @CPF(message = "Invalid CPF") String CPF,
         @Email(message = "Invalid e-mail") String email,
         String phoneNumber,
-        UUID psychologistId
+        UUID psychologistId,
+        List<UUID> schedulesId
 ) { }

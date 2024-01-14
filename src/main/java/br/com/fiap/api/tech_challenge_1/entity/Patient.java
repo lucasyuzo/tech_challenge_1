@@ -3,6 +3,7 @@ package br.com.fiap.api.tech_challenge_1.entity;
 import br.com.fiap.api.tech_challenge_1.enums.Gender;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -20,10 +21,11 @@ public class Patient {
     private String email;
     private String phoneNumber;
     private UUID psychologistId;
+    private List<UUID> schedulesId;
 
-    public Patient() {}
+    public Patient() { }
 
-    public Patient(UUID id, String name, int age, Gender gender, String CPF, String email, String phoneNumber, UUID psychologistId) {
+    public Patient(UUID id, String name, int age, Gender gender, String CPF, String email, String phoneNumber, UUID psychologistId, List<UUID> schedulesId) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -32,14 +34,11 @@ public class Patient {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.psychologistId = psychologistId;
+        this.schedulesId = schedulesId;
     }
 
     public UUID getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -96,6 +95,18 @@ public class Patient {
 
     public void setPsychologistId(UUID id) {
         this.psychologistId = id;
+    }
+
+    public List<UUID> getSchedulesId() {
+        return this.schedulesId;
+    }
+
+    public void addSchedule(UUID id) {
+        this.schedulesId.add(id);
+    }
+
+    public void removeSchedule(UUID id) {
+        this.schedulesId.remove(id);
     }
 
     @Override

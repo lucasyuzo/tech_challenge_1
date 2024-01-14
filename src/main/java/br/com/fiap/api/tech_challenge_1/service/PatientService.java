@@ -84,7 +84,8 @@ public class PatientService {
                 patientDTO.CPF(),
                 patientDTO.email(),
                 patientDTO.phoneNumber(),
-                patientDTO.psychologistId()
+                patientDTO.psychologistId(),
+                patientDTO.schedulesId()
         );
     }
 
@@ -97,7 +98,8 @@ public class PatientService {
                 patient.getCPF(),
                 patient.getEmail(),
                 patient.getPhoneNumber(),
-                patient.getPsychologistId()
+                patient.getPsychologistId(),
+                patient.getSchedulesId()
         );
     }
 }

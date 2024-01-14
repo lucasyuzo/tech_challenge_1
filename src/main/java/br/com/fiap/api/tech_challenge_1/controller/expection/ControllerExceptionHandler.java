@@ -46,4 +46,18 @@ public class ControllerExceptionHandler {
         }
         return ResponseEntity.status(status).body(validationError);
     }
+
+    @ExceptionHandler(SchedulingNotValidException.class)
+    public ResponseEntity<StandardError> schedulingValidationError(
+            SchedulingNotValidException exception,
+            HttpServletRequest request
+    ) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        error.setTimestamp(Instant.now());
+        error.setStatus(status.value());
+        error.setError("Schedule already exist");
+        error.setMessage(exception.getMessage());
+        error.setPath(request.getRequestURI());
+        return ResponseEntity.status(status).body(error);
+    }
 }
