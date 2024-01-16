@@ -1,4 +1,4 @@
-package br.com.fiap.api.tech_challenge_1.ddd.domain.service;
+package br.com.fiap.api.tech_challenge_1.ddd.domain.aggregate;
 
 import br.com.fiap.api.tech_challenge_1.ddd.application.controller.expection.ControllerNotFoundException;
 import br.com.fiap.api.tech_challenge_1.ddd.application.controller.expection.SchedulingNotValidException;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class SchedulingService {
+public class SchedulingAggregate {
 
     @Autowired
     private SchedulingRepository schedulingRepository;

@@ -1,7 +1,7 @@
 package br.com.fiap.api.tech_challenge_1.ddd.application.controller;
 
 import br.com.fiap.api.tech_challenge_1.ddd.domain.dto.SchedulingDTO;
-import br.com.fiap.api.tech_challenge_1.ddd.domain.service.SchedulingService;
+import br.com.fiap.api.tech_challenge_1.ddd.domain.aggregate.SchedulingAggregate;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.UUID;
 public class SchedulingController {
 
     @Autowired
-    SchedulingService service;
+    SchedulingAggregate service;
 
     @GetMapping("/psychologist/{id}")
     public ResponseEntity<List<SchedulingDTO>> getPsychologistSchedules(@PathVariable(name = "id", required = true) UUID id) {
